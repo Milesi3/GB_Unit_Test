@@ -1,75 +1,76 @@
 """
-Module: list_analyzer.py
+Модуль: list_analyzer.py
 
-This module defines the ListAnalyzer class, which can analyze two lists of numbers
-and compare their average values.
+Данный модуль определяет класс ListAnalyzer, который может анализировать два списка чисел
+и сравнивать их средние значения.
 """
 
 
 class ListAnalyzer:
     """
-    A class to analyze two lists of numbers and compare their average values.
+    Занятие по анализу двух списков чисел и сравнению их средних значений.
     """
 
     def __init__(self, list1, list2):
         """
-        Initialize the ListAnalyzer with two lists of numbers.
+        Инициализация ListAnalyzer двумя списками чисел.
 
         Args:
-            list1 (list): The first list of numbers.
-            list2 (list): The second list of numbers.
+            list1 (список): Первый список чисел.
+            list2 (список): Второй список чисел.
         """
         self.list1 = list1
         self.list2 = list2
 
     def calculate_average(self, lst):
         """
-        Calculate the average of a list of numbers.
+        Вычислить среднее значение списка чисел.
 
         Args:
-            lst (list): The list of numbers.
+            lst (список): Список чисел.
 
         Returns:
-            float: The average value of the list.
+            float: Среднее значение по списку.
         """
         if not lst:
             return 0
         for item in lst:
             if not isinstance(item, (int, float)):
-                raise TypeError("Invalid input. Please enter valid numbers separated by spaces.")
+                raise TypeError("Неверный ввод. Пожалуйста, введите правильные числа, "
+                                "разделенные пробелами.")
         return sum(lst) / len(lst)
 
     def compare_averages(self):
         """
-        Compare the average values of the two lists.
+        Сравнить средние значения двух списков.
 
         Returns:
-            str: A message indicating which list has a larger average value.
+            str: Сообщение, указывающее, какой список имеет большее среднее значение.
         """
         try:
             avg1 = self.calculate_average(self.list1)
             avg2 = self.calculate_average(self.list2)
 
             if avg1 > avg2:
-                return "The first list has a larger average value"
+                return "Первый список имеет большее среднее значение"
             elif avg2 > avg1:
-                return "The second list has a larger average value"
+                return "Второй список имеет большее среднее значение"
             else:
-                return "Average values are equal"
+                return "Средние значения равны"
         except ValueError as exc:
             return str(exc)
 
 
-if __name__ == "__main__":
-    try:
-        list1 = [float(x) for x in input("Enter the first list "
-                                         "of numbers separated by spaces: ").split()]
-        list2 = [float(x) for x in input("Enter the second list "
-                                         "of numbers separated by spaces: ").split()]
-
-        analyzer = ListAnalyzer(list1, list2)
-        result = analyzer.compare_averages()
-
-        print(result)
-    except ValueError:
-        print("Invalid input. Please enter valid numbers separated by spaces.")
+# if __name__ == "__main__":
+#     try:
+#         list1 = [float(x) for x in input("Введите первый список чисел, "
+#                                          "разделенных пробелами: ").split()]
+#         list2 = [float(x) for x in input("Введите второй список чисел, "
+#                                          "разделенных пробелами: ").split()]
+#
+#         analyzer = ListAnalyzer(list1, list2)
+#         result = analyzer.compare_averages()
+#
+#         print(result)
+#     except ValueError:
+#         print("Неверный ввод. Пожалуйста, введите правильные числа, разделенные пробелами.")
